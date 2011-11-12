@@ -1,0 +1,2 @@
+The goal of this application is to predict gender, with a reasonable margin of error, based only on author names found in articles published by PLoS accessible through http://api.plos.org/
+
