@@ -7,4 +7,5 @@
     - http://www.gpeters.com/names/baby-names.php
 + Wolfram Alpha returns name information for known names
     - e.g. http://www.wolframalpha.com/input/?i=Mary
-
+    - For single name (best to minimize errors) API query: http://www.wolframalpha.com/input/?i=name%2C+ELIZABETH
+    
