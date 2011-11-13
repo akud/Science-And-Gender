@@ -20,8 +20,8 @@ for row in _catsF:
 	# store a connection
 	conn = httplib.HTTPConnection("en.wikipedia.org")
 	# write the correct url
-	caturl = "/w/api.php?action=query&list=categorymembers&cmnamespace=0&cmlimit=1000&cmtitle=Category:" + str(row[0])
-	print caturl # Debugging
+	caturl = "/w/api.php?action=query&list=categorymembers&cmnamespace=0&cmlimit=100&cmtitle=Category:" + str(row[0])
+#	print caturl # Debugging
 	# form the request
 	conn.request("GET", caturl)
 	# store the response
