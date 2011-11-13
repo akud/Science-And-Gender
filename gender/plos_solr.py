@@ -2,7 +2,7 @@ import json
 from urllib2 import urlopen, quote
 
 searchUrl = 'http://api.plos.org/search?'
-api_key = open('plos_api_key').read()
+api_key = open('plos_api_key').read().replace('\n','')
 
 def search(query='*:*'):
 	'''
