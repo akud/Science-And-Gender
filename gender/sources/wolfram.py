@@ -7,10 +7,8 @@ conn = httplib.HTTPConnection("api.wolframalpha.com")
 conn.request("GET", "/v2/query?input=" + %s + "&appid=2ARWJK-68PPUGLUQY")
 # actually get info, store in a variable
 r1 = conn.getresponse()
-''' print r1.status, r1.reason # Debugging'''
 # use read() to get data, store in variable
 postsJSON = r1.read()
-# print postsJSON # Debugging
 
 # try to import json library, if can't, import alternative simplejson
 try:
@@ -20,10 +18,6 @@ except ImportError:
 
 # use json.loads() to parse the JSON data into something python-readable
 postsParsed = json.loads(postsJSON)
-# print postsParsed # Debugging
-
-# sampleCaption = postsParsed[u'response'][u'posts'][1][u'caption'] # Debugging
-# print sampleCaption # Debugging
 
 # function to return "captions" from python-readable data.
 def captions(posts):
@@ -32,10 +26,3 @@ def captions(posts):
     for r in justPosts:
         allCaptions = allCaptions + r[u'caption']
     return allCaptions
-
-# print returned captions
-print(captions(postsParsed))
-
-# newfile = open('text.txt', mode="w")
-# newfile.write(captions(postsParsed))
-
