@@ -6,9 +6,6 @@ import csv
 _namesFemale = [f for f in csv.reader(open('data/wikipedia_names_female.csv'))]
 _namesMale = [f for f in csv.reader(open('data/wikipedia_names_male.csv'))]
 
-# print _namesFemale # Debugging
-# print _namesMale # Debugging
-
 # _names = _names[1:len(_names)] #get rid of the header
 
 # need to do just a bit of preprocessing, make lower-case
@@ -16,15 +13,12 @@ _namesMale = [f for f in csv.reader(open('data/wikipedia_names_male.csv'))]
 for n in _namesFemale:
 	n[0] = n[0].lower()
         n.append(0)
-#	print n # Debugging
 for n in _namesMale:
 	n[0] = n[0].lower()
 	n.append(1)
-#	print n # Debugging
 
 # combine lists
 _namesCombined = _namesFemale + _namesMale
-print _namesCombined # Debugging
 
 def gender(name):
 	''' Return the gender of the given name, but no confidence level
@@ -43,7 +37,6 @@ def gender(name):
 
 		for n in _namesCombined:
 			if n[0] == name:
-#				print n[0] # Debugging
 				if n[1] == 0:
 					return 'FEMALE', 0
 				elif n[1] == 1:
@@ -54,6 +47,4 @@ def gender(name):
 	except IndexError: 
 		return 'UNKNOWN', 0
 
-# print(gender('Aaron')) # Testing
-# print(gender('Aila')) # Testing
 
