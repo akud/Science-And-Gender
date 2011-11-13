@@ -1,16 +1,16 @@
-import unittest
-import gender.sources.fbnames as fbnames
-
+import unittest 
+import gender.sources.fbnames as fbnames 
 class TestFBNames(unittest.TestCase):
 	def setUp(self):
 		self.names = {
-			'ALEX' : ('MALE', 0.4431703882518608),
-			'JULIE' : ('FEMALE', 0.4114406779661017),
+			'ALEX' : ('MALE', 0.9148671096345515),
+			'JULIE' : ('FEMALE', 0.9989711934156379),
+			'JIAMIN' : ('NEUTRAL', 1.0),
 			'akal;;`~~' : ('UNKNOWN',)
 		}
 	def runTest(self):
 		for name, result in self.names.iteritems():
-			self.assertEqual(result, fbnames.getGender(name))
+			self.assertEqual((name, result), (name, fbnames.getGender(name)))
 
 if __name__ == '__main__':
 	unittest.main()
