@@ -24,14 +24,14 @@ for n in _namesMale:
 
 # combine lists
 _namesCombined = _namesFemale + _namesMale
-# print _namesCombined # Debugging
+print _namesCombined # Debugging
 
 def gender(name):
 	''' Return the gender of the given name, but no confidence level
 	Possible gender return values are:
 	MALE
 	FEMALE
-	NEUTRAL
+	NEUTRAL # Except this one...
 	UNKNOWN
 	e.g. fbnames.getGender('alex') returns ('MALE', 0)
 	fbnames.getGender('julie') returns ('FEMALE', 0)
