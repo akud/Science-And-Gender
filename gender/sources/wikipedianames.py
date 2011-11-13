@@ -1,4 +1,4 @@
-''' Use the list of names from  http://sites.google.com/site/facebooknamelist/namelist to determine the gender of a given name
+''' Use the list of names from  http://en.wikipedia.org/wiki/Category:Given_names_by_gender to determine the gender of a given name
 '''
 import csv
 
