@@ -8,7 +8,7 @@ _catsM = [f for f in csv.reader(open('data/categories/wikipedia_mname_categories
 _catsU = [f for f in csv.reader(open('data/categories/wikipedia_uname_categories.csv'))]
 
 # store connection
-conn = httplib.HTTPConnection("en.wikipedia.org")
+# conn = httplib.HTTPConnection("en.wikipedia.org")
 
 # create variable to store all the requested names
 
@@ -17,17 +17,26 @@ _namesFdump= []
 # pass values for API request to get XML response
 # But need to loop through all the categories
 for row in _catsF:
-	url = '/w/api.php?action=query&list=categorymembers&cmnamespace=0&cmlimit=1000&cmtitle=Category:' + row[0]
-	print url
-#	_namesFdump = _namesFdump + conn.request("GET", url)
+	# store a connection
+	conn = httplib.HTTPConnection("en.wikipedia.org")
+	# write the correct url
+	caturl = "/w/api.php?action=query&list=categorymembers&cmnamespace=0&cmlimit=1000&cmtitle=Category:" + str(row[0])
+	print caturl # Debugging
+	# form the request
+	conn.request("GET", caturl)
+	# store the response
+	r1 = conn.getresponse()
+	# add this to our running tally of dump
+#	_namesFdump = _namesFdump + [r1.read()]
+	print r1.read()
 
-print _namesFdump
+# print _namesFdump
 
 # actually get info, store in a variable
-r1 = conn.getresponse()
+# r1 = conn.getresponse()
 ''' print r1.status, r1.reason # Debugging'''
 # use read() to get data, store in variable
-postsJSON = r1.read()
+# postsJSON = r1.read()
 # print postsJSON # Debugging
 
 # try to import json library, if can't, import alternative simplejson
