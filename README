@@ -31,4 +31,5 @@ The goal of this application is to predict gender, with a reasonable margin of e
 + Also using Wikipedia lists of names, those organized by category
     - http://en.wikipedia.org/wiki/Category:Given_names_by_gender
     - Also, just realized there is a list of gender-neutral names: http://en.wikipedia.org/wiki/Category:Unisex_given_names
+    - Didn't know about the Wikipedia API: http://en.wikipedia.org/w/api.php until late, but successfully scraped the name data! You can find it in our data/ directory.
 
