@@ -10,7 +10,7 @@ class TestFBNames(unittest.TestCase):
 		}
 	def runTest(self):
 		for name, result in self.names.iteritems():
-			self.assertEqual((name, result), (name, fbnames.getGender(name)))
+			self.assertEqual((name, result), (name, fbnames.gender(name)))
 
 if __name__ == '__main__':
 	unittest.main()

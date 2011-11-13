@@ -15,7 +15,7 @@ for row in _names:
 _threshold = 0.6
 
 
-def getGender(name):
+def gender(name):
 	''' Return the gender of the given name, along with a confidence level
 	Possible gender return values are:
 	MALE
