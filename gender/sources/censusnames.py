@@ -1,59 +1,65 @@
-''' Use the list of names from  http://sites.google.com/site/facebooknamelist/namelist to determine the gender of a given name
+''' Use the list of names from http://www.census.gov/genealogy/names/names_files.html to determine the gender of a given name
 '''
 import csv
 
-# the format is name, male number, female number, total
-_namesFemale = [f for f in csv.reader(open('data/wikipedia_names_female.csv'))]
-_namesMale = [f for f in csv.reader(open('data/wikipedia_names_male.csv'))]
+#the format is name, male number, female number, total
+_namesFcensus = [f for f in csv.reader(open('data/dist.female.first.txt'))]
+_namesMcensus = [f for f in csv.reader(open('data/dist.male.first.txt'))]
 
-# print _namesFemale # Debugging
-# print _namesMale # Debugging
+# print(_namesFcensus) # Debugging
+# print(_namesMcensus) # Debugging
 
-# _names = _names[1:len(_names)] #get rid of the header
+# some pre-processing
 
-# need to do just a bit of preprocessing, make lower-case
+for i in xrange(len(_namesFcensus)):
+	row = _namesFcensus[i]
+	row[0] = row[0].lower()
+	row = row[0].split()
+	row.append(0)
+	_namesFcensus[i] = row
+#	print row # Test
 
-for n in _namesFemale:
-	n[0] = n[0].lower()
-        n.append(0)
-#	print n # Debugging
-for n in _namesMale:
-	n[0] = n[0].lower()
-	n.append(1)
-#	print n # Debugging
+for i in xrange(len(_namesMcensus)):
+	row = _namesMcensus[i]
+	row[0] = row[0].lower()
+	row = row[0].split()
+	row.append(1)
+	_namesMcensus[i] = row
+#	print row # Test
 
-# combine lists
-_namesCombined = _namesFemale + _namesMale
-# print _namesCombined # Debugging
+_namesCensus = _namesFcensus + _namesMcensus
+# print _namesCensus # Debugging
+
+_threshold = 0.6
+
+# print _names # Debugging
 
 def gender(name):
-	''' Return the gender of the given name, but no confidence level
+	''' Return the gender of the given name, along with a confidence level
 	Possible gender return values are:
 	MALE
 	FEMALE
 	NEUTRAL
 	UNKNOWN
-	e.g. fbnames.getGender('alex') returns ('MALE', 0)
-	fbnames.getGender('julie') returns ('FEMALE', 0)
+	e.g. fbnames.getGender('alex') returns ('MALE',0.91...)
+	fbnames.getGender('julie') reutrns ('FEMALE',0.95...)
 	'''
-        name = name.lower()
+	name = name.lower()
 	try:
+'''
 		#first entry is the name, second is male number, 
 		#third is female number, is last total
+		malecount, femalecount = \
+		[(row[1], row[2]) \
+			for row in _names if row[0] == name][0]
 
-		for n in _namesCombined:
-			if n[0] == name:
-#				print n[0] # Debugging
-				if n[1] == 0:
-					return 'FEMALE', 0
-				elif n[1] == 1:
-					return 'MALE', 0
-				else:
-					return 'UNKNOWN', 0
-		return 'UNKNOWN', 0
+		total = malecount + femalecount #just consider ppl that chose a gender
+		if malecount > _threshold * total:
+			return 'MALE', malecount / total
+		elif femalecount > _threshold * total:
+			return 'FEMALE', femalecount / total
+		else:
+			return 'NEUTRAL', 1 / (1 + abs(0.5 - malecount/total))
+'''
 	except IndexError: 
-		return 'UNKNOWN', 0
-
-# print(gender('Aaron')) # Testing
-# print(gender('Aila')) # Testing
-
+		return 'UNKNOWN',
