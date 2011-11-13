@@ -17,6 +17,13 @@ _threshold = 0.6
 
 def getGender(name):
 	''' Return the gender of the given name, along with a confidence level
+	Possible gender return values are:
+	MALE
+	FEMALE
+	NEUTRAL
+	UNKNOWN
+	e.g. fbnames.getGender('alex') returns ('MALE',0.91...)
+	fbnames.getGender('julie') reutrns ('FEMALE',0.95...)
 	'''
 	name = name.lower()
 	try:
