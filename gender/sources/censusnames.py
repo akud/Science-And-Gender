@@ -33,7 +33,7 @@ for i in xrange(len(_namesMcensus)):
 	_namesMcensus[i] = row
 #	print row # Test
 
-for i in xrange(len(_namesFcensus)):
+'''for i in xrange(len(_namesFcensus)):
 	rowF = _namesFcensus[i]
 	for j in xrange(len(_namesMcensus)):
 		rowM = _namesMcensus[j]
@@ -44,8 +44,9 @@ for i in xrange(len(_namesFcensus)):
 			rowM[4] = [0, 1]
 			_namesMcensus[j] = rowM
 			del _namesFcensus[i]
+'''
 
-
+# _namesCensus = [namesFcensus f if f not in namesMcensus]
 _namesCensus = _namesFcensus + _namesMcensus
 # print _namesCensus # Debugging
 
@@ -75,20 +76,39 @@ def gender(name):
 	fbnames.getGender('julie') returns ('FEMALE',0.95...)
 	'''
 	name = name.lower()
+	multipleGenders = []
 	try:
 		for n in _namesCensus:
 			# need to deal with case of name in both lists... but for now:
 			
 			if n[0] == name: # case
-				if n[4] == 0: # If this is a female listing
-					return 'FEMALE', n[1]
-				elif n[4] == 1: # If this is a male listing
-					return 'MALE', n[1]
-				else: # Otherwise if there's some error in the data
-					return 'UNKNOWN', n[1]
-		return 'UNKNOWN', 0	
+				multipleGenders.append(n) # add to temp list
+		if len(multipleGenders) >= 2:
+			# This is when I decide
+			# compare frequencies
+			frequencyDiff = float(multipleGenders[0][1]) - float(multipleGenders[1][1]) # Female, then male
+			if frequencyDiff > 0:
+				return 'FEMALE', frequencyDiff
+			elif frequencyDiff == 0:
+				return 'NEUTRAL', frequencyDiff
+			elif frequencyDiff < 0:
+				return 'MALE', abs(frequencyDiff)
+			else:
+				return 'UNKNOWN', 0
+		elif len(multipleGenders) == 1:
+			if multipleGenders[0][4] == 0: # If this is a female listing
+				return 'FEMALE', float(multipleGenders[0][1])
+			elif multipleGenders[0][4] == 1: # If this is a male listing
+				return 'MALE', float(multipleGenders[0][1])
+			else: # Otherwise if there's some error in the data
+				return 'UNKNOWN', float(multipleGenders[0][1])
+		else:
+			return 'UNKNOWN', 0
 	except IndexError: 
-		return 'UNKNOWN'
+		return 'broken?'
 
 # print gender('Matthew') # Debugging
-
+# print gender('Chris')
+# print gender('Jacob')
+# print gender('Fqhlal')
+# print gender('Gina')
