@@ -14,13 +14,17 @@ print len(firstnames), 'authors'
 
 malecount = 0
 femalecount = 0
+neutralcount = 0
 for name in firstnames:
 	gender = c.majorityVote(name)
 	if gender == 'MALE':
 		malecount += 1
-	if gender == 'FEMALE':
+	elif gender == 'FEMALE':
 		femalecount += 1
+	elif gender == 'NEUTRAL':
+		neutralcount += 1
 
 print malecount, 'of the authors were male'
 print femalecount, 'of the authors were female'
+print neutralcount, 'of the authors had gender neutral names'
 
