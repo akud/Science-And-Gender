@@ -8,4 +8,9 @@
 + Wolfram Alpha returns name information for known names
     - e.g. http://www.wolframalpha.com/input/?i=Mary
     - For single name (best to minimize errors) API query: http://www.wolframalpha.com/input/?i=name%2C+ELIZABETH
+    - The Wolfram Alpha API only allows individual applications 2,000 queries per month >.< meaning, useless for us.
++ US Census Data (DUH) 
+    - Names by rank with female/male breakdown: http://www.census.gov/genealogy/names/names_files.html
+    - Male first data: http://www.census.gov/genealogy/names/dist.male.first
+    - Female first data: http://www.census.gov/genealogy/names/dist.female.first
     
