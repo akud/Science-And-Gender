@@ -28,5 +28,7 @@ The goal of this application is to predict gender, with a reasonable margin of e
     - Names by rank with female/male breakdown: http://www.census.gov/genealogy/names/names_files.html
     - Male first data: http://www.census.gov/genealogy/names/dist.male.first
     - Female first data: http://www.census.gov/genealogy/names/dist.female.first
-
++ Also using Wikipedia lists of names, those organized by category
+    - http://en.wikipedia.org/wiki/Category:Given_names_by_gender
+    - Also, just realized there is a list of gender-neutral names: http://en.wikipedia.org/wiki/Category:Unisex_given_names
 
