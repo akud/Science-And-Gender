@@ -14,6 +14,7 @@ for row in _names:
 
 _threshold = 0.6
 
+# print _names # Debugging
 
 def gender(name):
 	''' Return the gender of the given name, along with a confidence level
