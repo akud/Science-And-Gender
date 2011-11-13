@@ -20,3 +20,10 @@ def majorityVote(name):
 		return 'NEUTRAL'
 	else:
 		return 'UNKOWN'
+
+def mostConfident(name):
+	''' Return the prediction of the method which is the most confident in its result
+	'''
+	predictions = [f(name) for f in predictors]
+	return [name for name, score in predictions 
+		if score == max([f[1] for f in predictions])][0]
